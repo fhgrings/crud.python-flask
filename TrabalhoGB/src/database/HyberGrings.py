@@ -40,8 +40,11 @@ class HyberGrings():
         self.query += str(self.childDict[self.childAttributeList[0]])
         print("QUERY:\n\n" + self.query + "\n\n")
 
-        self.cursor.execute(self.query)
-        self.banco.commit()
+        try:
+            self.cursor.execute(self.query)
+            self.banco.commit()
+        except Exception as e:
+            raise Exception (e)
         return self.cursor.rowcount
 
     def findAll(self):
@@ -93,9 +96,13 @@ class HyberGrings():
 
         print(self.query)
 
-        self.cursor.execute(self.query)
-        self.banco.commit()
+        try:
+            self.cursor.execute(self.query)
+            self.banco.commit()
+        except Exception as e:
+            raise Exception (e)
         # self.childDict[self.childAttributeList[0]] = self.cursor.lastrowid
+        print("Passei")
         self.loadObject(params)
 
 
@@ -106,11 +113,19 @@ class HyberGrings():
     def delete(self):
         self.query = "DELETE FROM "
         self.query += self.table
-        self.query += " WHERE "
-        self.query += self.queryParamsList[0] + " = " + self.childDict[self.childAttributeList[0]]
+        self.query += " WHERE ( "
+        self.query += self.queryParamsList[0]
+        self.query += " = " 
+        self.query += str(self.childDict[self.childAttributeList[0]]) + ")"
+        # self.query += " AND " + self.queryParamsList[1] + " = " + str(self.childDict[self.childAttributeList[1]])
+        # self.query += " AND " + self.queryParamsList[2] + " = " + str(self.childDict[self.childAttributeList[2]]) + " )"
 
-        self.cursor.execute(self.query)
-        self.banco.commit()
+        print(self.query)
+        try:
+            self.cursor.execute(self.query)
+            self.banco.commit()
+        except Exception as e:
+            return str(e)
 
     def toTuple(self):
         retorno = []

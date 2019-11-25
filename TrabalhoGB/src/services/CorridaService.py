@@ -4,7 +4,10 @@ class CorridaService():
 
     def getCorrida(self, request):
         corrida = Corrida()
-        corrida.findById(request.args.get('idCorrida'))
+        try:
+            corrida.findById(request.args.get('idCorrida'))
+        except Exception as e:
+            return str(e), 400
         return corrida.__str__()
 
     def getAll(self,request):
@@ -26,7 +29,12 @@ class CorridaService():
         params.append(request.json['destino'])
         params.append(request.json['tarifa'])
         params.append(request.json['distancia'])
-        corrida.create(params)
+        print(params)
+        
+        try:
+            corrida.create(params)
+        except Exception as e:
+            return str(e), 400
         return 'OK'
 
     def updateCorrida(self, request):
@@ -42,12 +50,20 @@ class CorridaService():
         params.append(request.json['destino'])
         params.append(request.json['tarifa'])
         params.append(request.json['distancia'])
-        corrida = Corrida(params)
-        corrida.update()
+        try:
+            corrida = Corrida(params)
+            corrida.update()
+        except Exception as e:
+            return str(e), 400
         return 'OK'
     
     def deleteCorrida(self, request):
         corrida = Corrida()
-        corrida.findById(request.args.get('idCorrida'))
-        corrida.delete()
-        return 'OK'
+
+        try:
+            print(request.args.get('idCorrida'))
+            corrida.findById(request.args.get('idCorrida'))
+            corrida.delete()
+            return 'OK'
+        except Exception as e:
+            return str(e) , 400

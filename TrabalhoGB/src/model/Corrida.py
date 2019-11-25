@@ -124,15 +124,15 @@ class Corrida(HyberGrings):
         self.update()        
          
     def __str__(self):
-        return "{"f""" ---------------Corrida---------------
-        'id_motorista':\t'{self.__id_motorista}'
-        'CPF_passageiro':\t'{self.__CPF_passageiro}'
-        'id_corrida':\t'{self.__id_corrida}'
-        'avaliacao_condutor':\t'{self.__avaliacao_condutor}'
-        'avaliacao_veiculo':\t'{self.__avaliacao_veiculo}'
-        'data_inicio':\t'{self.__data_inicio}'
-        'data_fim':\t'{self.__data_fim}'
-        'origem':\t'{self.__origem}'
-        'destino':\t'{self.__destino}'
-        'tarifa':\t'{self.__tarifa}'
-        'distancia':\t'{self.__distancia}""""}"
+        return "{"f"""
+        "id_motorista":\t"{self.__id_motorista}",
+        "CPF_passageiro":\t"{self.__CPF_passageiro}",
+        "id_corrida":\t"{self.__id_corrida}",
+        "avaliacao_condutor":\t"{self.__avaliacao_condutor}",
+        "avaliacao_veiculo":\t"{self.__avaliacao_veiculo}",
+        "data_inicio":\t"{self.__data_inicio}",
+        "data_fim":\t"{self.__data_fim}",
+        "origem":\t"{self.__origem}",
+        "destino":\t"{self.__destino}",
+        "tarifa":\t"{self.__tarifa}",
+        "distancia":\t"{self.__distancia}" """"}"

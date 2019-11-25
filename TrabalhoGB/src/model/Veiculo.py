@@ -44,6 +44,6 @@ class Veiculo(HyberGrings):
     
     def __str__(self):
         return "{"f"""
-        'renavan':\t{self.__renavan}'
-        'placa':\t{self.__placa}'
-        'id_modelo_veiculo':\t{self.__id_modelo_veiculo}'""""}"
+        "renavan":\t"{self.__renavan}",
+        "placa":\t"{self.__placa}",
+        "id_modelo_veiculo":\t"{self.__id_modelo_veiculo}" """"}"

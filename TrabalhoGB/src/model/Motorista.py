@@ -65,8 +65,8 @@ class Motorista(HyberGrings):
     
     def __str__(self):
         return "{"f"""
-        'id_motorista':\t'{self.__id_motorista}'
-        'CPF_condutor':\t'{self.__CPF_condutor}'
-        'renavan':\t'{self.__renavan}'
-        'data_inicio':\t'{self.__data_inicio}'
-        'data_fim':\t'{self.__data_fim}'""""}"
+        "id_motorista":\t"{self.__id_motorista}",
+        "CPF_condutor":\t"{self.__CPF_condutor}",
+        "renavan":\t"{self.__renavan}",
+        "data_inicio":\t"{self.__data_inicio}",
+        "data_fim":\t"{self.__data_fim}" """"}"

@@ -53,7 +53,7 @@ class Condutor(HyberGrings):
     
     def __str__(self):
         return "{"+f"""
-        'CPF_condutor':\t'{self.__CPF_condutor}''
-        'Nome':\t'{self.__nome}''
-        'Telefone':\t'{self.__Telefone}''
-        'Data_cadastro':\t'{self.__Data_cadastro}''"""+"}"
+        "CPF_condutor":\t"{self.__CPF_condutor}",
+        "nome":\t"{self.__nome}",
+        "telefone":\t"{self.__Telefone}",
+        "data_cadastro":\t"{self.__Data_cadastro}" """"}"

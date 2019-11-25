@@ -48,7 +48,7 @@ class Passageiro(HyberGrings):
 
     def __str__(self):
         return "{"f"""
-        'cpf_passageiro':\t{self.__cpf_passageiro}'
-        'nome':\t{self.__nome}'
-        'telefone':\t{self.__telefone}'
-        'data_cadastro':\t{self.__data_cadastro}'""""}"
+        "cpf_passageiro":\t"{self.__cpf_passageiro}",
+        "nome":\t"{self.__nome}",
+        "telefone":\t"{self.__telefone}",
+        "data_cadastro":\t"{self.__data_cadastro}" """"}"

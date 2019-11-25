@@ -8,6 +8,9 @@ from src.services.ModeloVeiculoService import ModeloVeiculoService
 from src.services.MotoristaService import MotoristaService
 from src.services.PassageiroSerice import PassageiroService
 from src.services.VeiculoService import VeiculoService
+from src.services.InformacoesCondutorService import InformacoesCondutorService
+from src.services.InformacoesCorridaService import InformacoesCorridaService
+from src.services.InformacoesVeiculoService import InformacoesVeiculoService
 
 def configure(app):
 
@@ -61,12 +64,12 @@ def configure(app):
         corridaService = CorridaService()
         return corridaService.createCorrida(request)
 
-    @app.route("/condutor/update/", methods=['UPDATE'])
+    @app.route("/corrida/update/", methods=['POST'])
     def updateCorrida():
         corridaService = CorridaService()
         return corridaService.updateCorrida(request)
     
-    @app.route("/condutor/delete/", methods=['DELETE'])
+    @app.route("/corrida/delete/", methods=['DELETE'])
     def deleteCorrida():
         corridaService = CorridaService()
         return corridaService.deleteCorrida(request)
@@ -85,7 +88,7 @@ def configure(app):
         modeloVeiculoService = ModeloVeiculoService()
         return modeloVeiculoService.createModeloVeiculo(request)
 
-    @app.route("/modelo-veiculo/update/", methods=['UPDATE'])
+    @app.route("/modelo-veiculo/update/", methods=['POST'])
     def updateModeloVeiculo():
         modeloVeiculoService = ModeloVeiculoService()
         return modeloVeiculoService.updateModeloVeiculo(request)
@@ -107,7 +110,7 @@ def configure(app):
         return motoristaService.createMotorista(request)
 
 
-    @app.route("/motorista/update/", methods=['UPDATE'])
+    @app.route("/motorista/update/", methods=['POST'])
     def updateMotorista():
         motoristaService = MotoristaService()
         return motoristaService.updateMotorista(request)
@@ -129,7 +132,7 @@ def configure(app):
         passageiroService = PassageiroService()
         return passageiroService.createPassageiro(request)
 
-    @app.route("/passageiro/update/", methods=['UPDATE'])
+    @app.route("/passageiro/update/", methods=['POST'])
     def updatePassageiro():
         passageiroService = PassageiroService()
         return passageiroService.updatePassageiro(request)
@@ -151,7 +154,7 @@ def configure(app):
         veiculoService = VeiculoService()
         return veiculoService.createVeiculo(request)
 
-    @app.route("/veiculo/update/", methods=['UPDATE'])
+    @app.route("/veiculo/update/", methods=['POST'])
     def updateVeiculo():
         veiculoService = VeiculoService()
         return veiculoService.updateVeiculo(request)
@@ -161,4 +164,19 @@ def configure(app):
         veiculoService = VeiculoService()
         return veiculoService.deleteVeiculo(request)
 
+
+    @app.route("/informacoesCorrida/get/", methods=['GET'])
+    def getInformacoesCorrida():
+        informacoesCorridaService = InformacoesCorridaService()
+        return informacoesCorridaService.getAll(request)
+
+    @app.route("/informacoesCondutor/get/", methods=['GET'])
+    def getInformacoesCondutor():
+        informacoesCondutorService = InformacoesCondutorService()
+        return informacoesCondutorService.getAll(request)
+
+    @app.route("/informcoesVeiculo/get/", methods=['GET'])
+    def getInformacoesVeiculo():
+        informacoesVeiculoService = InformacoesVeiculoService()
+        return informacoesVeiculoService.getAll(request)
         

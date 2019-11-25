@@ -3,7 +3,10 @@ from ..model.ModeloVeiculo import ModeloVeiculo
 class ModeloVeiculoService():
     def getModeloVeiculo(self, request):
         modeloVeiculo = ModeloVeiculo()
-        modeloVeiculo.findById(request.args.get('idModeloVeiculo'))
+        try:
+            modeloVeiculo.findById(request.args.get('idModeloVeiculo'))
+        except Exception as e:
+            return e
         return modeloVeiculo.__str__()
 
     def createModeloVeiculo(self, request):
@@ -13,7 +16,11 @@ class ModeloVeiculoService():
         params.append(request.json['modelo'])
         params.append(request.json['marca'])
         params.append(request.json['ano'])
-        modeloVeiculo.create(params)
+        
+        try:
+            modeloVeiculo.create(params)
+        except Exception as e:
+            return e
         return 'OK'
 
     def updateModeloVeiculo(self, request):
@@ -22,12 +29,20 @@ class ModeloVeiculoService():
         params.append(request.json['modelo'])
         params.append(request.json['marca'])
         params.append(request.json['ano'])
-        modeloVeiculo = ModeloVeiculo(params)
-        modeloVeiculo.update()
+
+        try:
+            modeloVeiculo = ModeloVeiculo(params)
+            modeloVeiculo.update()
+        except Exception as e:
+            return e
         return 'OK'
     
     def deleteModeloVeiculo(self, request):
         modeloVeiculo = ModeloVeiculo()
-        modeloVeiculo.findById(request.args.get('idModeloVeiculo'))
-        modeloVeiculo.delete()
+
+        try:
+            modeloVeiculo.findById(request.args.get('idModeloVeiculo'))
+            modeloVeiculo.delete()
+        except Exception as e:
+            return e
         return 'OK'

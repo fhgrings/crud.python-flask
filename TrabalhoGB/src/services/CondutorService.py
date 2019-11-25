@@ -3,6 +3,15 @@ from ..database.Database import Database
 
 class CondutorService():
 
+
+    def getAll(self, request):
+        try:
+            condutor = Condutor()
+            return condutor.findAll()
+        except Exception as e:
+            return e
+
+
     def getCondutor(self, request):
         try:
             condutor = Condutor()
@@ -14,32 +23,39 @@ class CondutorService():
     def createCondutor(self, request):
         condutor = Condutor()
         params = []
-        params.append(request.json['CPF_condutor'])
-        params.append(request.json['nome'])
-        params.append(request.json['telefone'])
-        params.append(request.json['data_cadastro'])
         try:
+            params.append(request.json['CPF_condutor'])
+            params.append(request.json['nome'])
+            params.append(request.json['telefone'])
+            params.append(request.json['data_cadastro'])
             condutor.create(params)
-        except Exception:
-            return "Erro ao criar tupla"
+        except Exception as e:
+            return str(e), 400
         return 'OK'
 
     def updateCondutor(self, request):
         params = []
-        params.append(request.json['CPF_condutor'])
-        params.append(request.json['nome'])
-        params.append(request.json['telefone'])
-        params.append(request.json['data_cadastro'])
-        condutor = Condutor(params)
-        print(condutor)
-        condutor.update()
+        try:
+            params.append(request.json['CPF_condutor'])
+            params.append(request.json['nome'])
+            params.append(request.json['telefone'])
+            params.append(request.json['data_cadastro'])
+            condutor = Condutor(params)
+            print(condutor)
+            condutor.update()
+        except Exception as e:
+            return str(e), 400
         return 'OK'
     
     def deleteCondutor(self, request):
         condutor = Condutor()
-        condutor.findById(request.args.get('idCondutor'))
-        condutor.delete()
-        return 'OK'
+        try:
+            condutor.findById(request.args.get('idCondutor'))
+            print(condutor)
+            condutor.delete()
+            return 'OK'
+        except Exception as e:
+            return str(e), 400
 
     def getInformacoesCondutor(self):
         database = Database()

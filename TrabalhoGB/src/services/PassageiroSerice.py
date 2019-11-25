@@ -3,7 +3,10 @@ from ..model.Passageiro import Passageiro
 class PassageiroService():
     def getPassageiro(self, request):
         passageiro = Passageiro()
-        passageiro.findById(request.args.get('idPassageiro'))
+        try:
+            passageiro.findById(request.args.get('idPassageiro'))
+        except Exception as e:
+            return str(e), 400
         return passageiro.__str__()
 
     def createPassageiro(self, request):
@@ -13,7 +16,11 @@ class PassageiroService():
         params.append(request.json['nome'])
         params.append(request.json['telefone'])
         params.append(request.json['data_cadastro'])
-        passageiro.create(params)
+
+        try:
+            passageiro.create(params)
+        except Exception as e:
+            return e
         return 'OK'
 
     def updatePassageiro(self, request):
@@ -22,13 +29,21 @@ class PassageiroService():
         params.append(request.json['nome'])
         params.append(request.json['telefone'])
         params.append(request.json['data_cadastro'])
-        passageiro = Passageiro(params)
-        passageiro.update()
+
+        try:
+            passageiro = Passageiro(params)
+            passageiro.update()
+        except Exception as e:
+            return e
         return 'OK'
     
     def deletePassageiro(self, request):
         passageiro = Passageiro()
-        passageiro.findById(request.args.get('idPassageiro'))
-        passageiro.delete()
+
+        try:
+            passageiro.findById(request.args.get('idPassageiro'))
+            passageiro.delete()
+        except Exception as e:
+            return str(e), 400
         return 'OK'
 
