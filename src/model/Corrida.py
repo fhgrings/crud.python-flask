@@ -23,8 +23,7 @@ class Corrida(HyberGrings):
         self.__destino               = None
         self.__tarifa                = None
         self.__distancia             = None
-        super(Corrida, self).__init__(self.__class__.__name__, self.__dict__)
-
+        super(Corrida, self).__init__(self.__class__.__name__, self.__dict__, primaryKeys = 3)
         if dados:
             self.fromTuple(dados)
 

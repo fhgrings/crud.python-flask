@@ -1,15 +1,18 @@
 from ..model.Condutor import Condutor
 from ..database.Database import Database
+import datetime
+import json
 
 class CondutorService():
-
 
     def getAll(self, request):
         try:
             condutor = Condutor()
-            return condutor.findAll()
+            condutores = [Condutor(dados=item).__str__() for item in condutor.findAll()]
+            return condutores.__str__()
+
         except Exception as e:
-            return e
+            return str(e)
 
 
     def getCondutor(self, request):
@@ -18,7 +21,7 @@ class CondutorService():
             condutor.findById(request.args.get('idCondutor'))
             return condutor.__str__()
         except Exception:
-            return "Id não encontrado"
+            return "Id não encontrado", 400
 
     def createCondutor(self, request):
         condutor = Condutor()

@@ -1,6 +1,5 @@
 from .Database import Database
-
-
+from datetime import datetime
 
 class HyberGrings():
 
@@ -11,11 +10,12 @@ class HyberGrings():
             if nameAttributeVector != []:
                 self.queryParamsList.append('_'.join(nameAttributeVector))
 
-    def __init__(self, tableName, childDict):
+    def __init__(self, tableName, childDict, primaryKeys = 1):
         self.query = None
         self.childAttributeList = []
         self.queryParamsList = []
         self.table = str(tableName)
+        self.primaryKeys = primaryKeys
 
         database = Database()
         self.banco, self.cursor = database.connectionFactory()
@@ -34,10 +34,12 @@ class HyberGrings():
             self.query += " = "
             self.query += "'" + str(self.childDict[self.childAttributeList[index]]) + "', "
         self.query = self.query[:-2]
-        self.query += " WHERE "
-        self.query += self.queryParamsList[0]
-        self.query += " = "
-        self.query += str(self.childDict[self.childAttributeList[0]])
+        self.query += " WHERE ( "
+        for index in range(self.primaryKeys):
+            self.query += self.queryParamsList[index] + " = " + str(self.childDict[self.childAttributeList[index]]) + " AND "
+        self.query = self.query[:-4] 
+        self.query += " )"
+
         print("QUERY:\n\n" + self.query + "\n\n")
 
         try:
@@ -49,8 +51,10 @@ class HyberGrings():
 
     def findAll(self):
         self.query = "SELECT * FROM " + self.table
-
+        print(self.query)
         self.cursor.execute(self.query)
+        teste = self.childDict.__init__
+        print(teste)
         return self.cursor.fetchall()
 
 
@@ -114,11 +118,10 @@ class HyberGrings():
         self.query = "DELETE FROM "
         self.query += self.table
         self.query += " WHERE ( "
-        self.query += self.queryParamsList[0]
-        self.query += " = " 
-        self.query += str(self.childDict[self.childAttributeList[0]]) + ")"
-        # self.query += " AND " + self.queryParamsList[1] + " = " + str(self.childDict[self.childAttributeList[1]])
-        # self.query += " AND " + self.queryParamsList[2] + " = " + str(self.childDict[self.childAttributeList[2]]) + " )"
+        for index in range(self.primaryKeys):
+            self.query += self.queryParamsList[index] + " = " + str(self.childDict[self.childAttributeList[index]]) + " AND "
+        self.query = self.query[:-4]
+        self.query += ")"
 
         print(self.query)
         try:

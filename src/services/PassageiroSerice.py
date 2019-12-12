@@ -20,7 +20,7 @@ class PassageiroService():
         try:
             passageiro.create(params)
         except Exception as e:
-            return e
+            return str(e), 400
         return 'OK'
 
     def updatePassageiro(self, request):
@@ -34,7 +34,7 @@ class PassageiroService():
             passageiro = Passageiro(params)
             passageiro.update()
         except Exception as e:
-            return e
+            return str(e), 400
         return 'OK'
     
     def deletePassageiro(self, request):
@@ -42,6 +42,7 @@ class PassageiroService():
 
         try:
             passageiro.findById(request.args.get('idPassageiro'))
+            print(passageiro)
             passageiro.delete()
         except Exception as e:
             return str(e), 400

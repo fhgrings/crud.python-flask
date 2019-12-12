@@ -22,10 +22,10 @@ class InformacoesCondutor(HyberGrings):
             self.fromTuple(dados)     
             
     def __str__(self):
-        return f""" ---------------InformacoesCondutor---------------
-        CPF condutor:\t{self.__CPF_condutor}
-        Nome condutor:\t{self.__Nome}
-        Quantidade Avalicoes:\t{self.__QuantidadeAvalicoes}
-        Media Avaliacoes:\t{self.__Media_avaliacoes}
-        Quantidade Corridas:\t{self.__Quantidade_Corridas}
-        Pagamento:\t{self.__Pagamento}"""
+        return "{ " f"""
+        "CPF condutor":\t"{self.__CPF_condutor}",
+        "Nome condutor":\t"{self.__Nome}",
+        "Quantidade Avalicoes":\t"{self.__QuantidadeAvalicoes}",
+        "Media Avaliacoes":\t"{self.__Media_avaliacoes}",
+        "Quantidade Corridas":\t"{self.__Quantidade_Corridas}",
+        "Pagamento":\t"{self.__Pagamento}" """ "}"

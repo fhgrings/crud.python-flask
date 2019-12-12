@@ -31,8 +31,16 @@ def configure(app):
         try:
             condutorService = CondutorService()
             return condutorService.getCondutor(request)
-        except Exception:
-            return Exception, 500
+        except Exception as e:
+            return str(e), 500
+
+    @app.route("/condutor/all/", methods=['GET'])
+    def getAllCondutor():
+        try:
+            condutorService = CondutorService()
+            return condutorService.getAll(request)
+        except Exception as e:
+            return str(e), 400
 
 
     @app.route("/condutor/create/", methods=['PUT'])
@@ -165,17 +173,22 @@ def configure(app):
         return veiculoService.deleteVeiculo(request)
 
 
-    @app.route("/informacoesCorrida/get/", methods=['GET'])
+    @app.route("/informacoesCorrida/all/", methods=['GET'])
     def getInformacoesCorrida():
         informacoesCorridaService = InformacoesCorridaService()
         return informacoesCorridaService.getAll(request)
 
-    @app.route("/informacoesCondutor/get/", methods=['GET'])
-    def getInformacoesCondutor():
+    @app.route("/informacoesCondutor/all/", methods=['GET'])
+    def Passageiro():
         informacoesCondutorService = InformacoesCondutorService()
         return informacoesCondutorService.getAll(request)
 
-    @app.route("/informcoesVeiculo/get/", methods=['GET'])
+    @app.route("/informacoesCondutor/get/", methods=['GET'])
+    def getInformacoesCondutor():
+        informacoesCondutorService = InformacoesCondutorService()
+        return informacoesCondutorService.getOne(request)
+
+    @app.route("/informcoesVeiculo/all/", methods=['GET'])
     def getInformacoesVeiculo():
         informacoesVeiculoService = InformacoesVeiculoService()
         return informacoesVeiculoService.getAll(request)

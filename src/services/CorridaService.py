@@ -12,8 +12,8 @@ class CorridaService():
 
     def getAll(self,request):
         corrida = Corrida()
-        corridas = [Corrida(dados=item) for item in corrida.getAll()]
-        return corridas
+        corridas = [Corrida(dados=item).__str__() for item in corrida.getAll()]
+        return corridas.__str__()
 
     def createCorrida(self, request):
         corrida = Corrida()
